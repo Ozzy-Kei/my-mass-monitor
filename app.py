@@ -110,6 +110,7 @@ if user_name == "OZZY":
     sleep_time = st.slider('睡眠の度合いを入力してください.(default: 6h=50)', 0, 100, 50, key='sleep')
 else: 
     eating = np.nan
+    sleep_time = np.nan
 
 st.markdown("""
     <style>

@@ -12,7 +12,7 @@ conn = sqlite3.connect('health_care.db')
 c = conn.cursor()
 
 def show_data():
-    today = date.today().isoformat()
+    today = datetime.now(ZoneInfo("Asia/Tokyo")).date().isoformat()
     c.execute(
         'SELECT * FROM users WHERE day = ?',
         (today,)

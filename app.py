@@ -37,15 +37,16 @@ def get_data(user_name):
     return df
 
 def show_plot(data, u_name):
-    fig = plt.subplots(figsize=(10, 5))
-    plt.plot(data["day"], data["weight"], marker="o", color="cornflowerblue")
-    plt.xlabel("Date")
-    plt.ylabel("Weight [kg]")
-    plt.title(f"{u_name} の体重変化")
-    plt.grid(True)
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(data["day"], data["weight"], marker="o", color="cornflowerblue")
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Weight [kg]")
+    ax.set_title(f"{u_name} の体重変化")
+    ax.grid(True)
     plt.xticks(rotation=45)
-    plt.tight_layout()
+    fig.tight_layout()
     return fig
+
 
 
 st.title("健康管理/モニター")
@@ -114,7 +115,7 @@ checker_name = st.selectbox(
     ]
 )
 
-if st.button('Check'):
+if st.button("Check"):
     df = get_data(checker_name)
     df["day"] = pd.to_datetime(df["day"])
 

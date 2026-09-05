@@ -82,7 +82,7 @@ user_name = st.selectbox(
 )
 date_ = st.date_input("測定日", value=date.today())
 time_ = st.time_input("測定時刻",value=time(now.hour, now.minute))
-weight = st.number_input("Weight", min_value=90.0)
+weight = st.number_input("Weight", value=90.0)
 
 st.write("運動度合いを入力してください.")
 excercise = st.slider('Select a value', 0, 100, 50)

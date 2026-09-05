@@ -11,11 +11,10 @@ japan = ZoneInfo("Asia/Tokyo")
 conn = sqlite3.connect('health_care.db')
 c = conn.cursor()
 
-
 def show_data():
     today = date.today().isoformat()
     c.execute(
-        'SELECT * FROM users WHERE DATE(created_at) = ?',
+        'SELECT * FROM users WHERE day = ?',
         (today,)
     )
     data = c.fetchall()
@@ -23,13 +22,16 @@ def show_data():
         st.write(d)
 
 # Add data
-def add_data(u_n, measurement_date, measurement_time, weight, excercise, meshi, sleep):
+def add_data(u_n, measurement_date, measurement_time, weight, excercise, eating, sleep):
     c.execute(
-        'INSERT INTO users (user, day, time, weight, excercise, meshi, sleep) VALUES (?, ?, ?, ?, ?, ?, ?)',
-        (u_n, str(measurement_date), str(measurement_time), weight, excercise, meshi, sleep)
+        '''
+        INSERT INTO users (user, day, time, weight, excercise, eating, sleep) VALUES (?, ?, ?, ?, ?, ?, ?)
+        ''',
+        (u_n, str(measurement_date), str(measurement_time), weight, excercise, eating, sleep)
     )
     conn.commit()
-    st.write('Data added. Please reload page.')
+    c.execute('SELECT * FROM users')
+    st.write('Data added. Please reload page to check it.')
 
 def get_data(user_name):
     conn = sqlite3.connect('health_care.db')
@@ -79,7 +81,7 @@ c.execute('''
     )
 ''')
 
-#show_data()
+show_data()
 
 # time info.
 current = datetime.now(japan)

@@ -1,4 +1,6 @@
-pandas
 streamlit
+streamlit-js-eval
 matplotlib
 numpy
+pandas
+supabase

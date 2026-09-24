@@ -148,7 +148,8 @@ if "user_id" not in st.session_state:
                     supabase.auth.reset_password_for_email(
                         reset_email,
                         options={
-                            "redirect_to": "http://localhost:8501" # streamlitでは違うURL
+                            #"redirect_to": "http://localhost:8501" # streamlitでは違うURL
+                            "redirect_to": "https://weight-health-tracker.streamlit.app" # streamlitでは違うURL
                         }
                     )
 
